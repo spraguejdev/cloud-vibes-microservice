@@ -1,6 +1,6 @@
 # Project Name
 
-> Open source platform simulating a single song sound experience. This microservice will dynamically render comments related to a single song 
+> Open source platform simulating a single song sound experience. Some of the key deliverables for this project were to rip out the backend of the inherited codebase and refactor into the mvc framework and build out the RESTful apis, perform a technical spike in regards the my particular use case, benchmark databases and optimize for read operations, deploy to Amazon EC2 T2 micro instances and scale to handle thousands of users navigating to the site per second. 
 
 ## Related Projects
   - https://github.com/cloud-vibes/tim-luu-musicplayer-service
