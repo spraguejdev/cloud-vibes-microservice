@@ -36,11 +36,14 @@ export default class CommentSection extends React.Component {
     window.removeEventListener('scroll', this.onScroll, false);
   }
 
-  getComments = () => {
-    axios.get(`http://localhost:3000${window.location.pathname}comments`)
+  getComments = () => {  
+    var paths = window.location.pathname.split('/');
+    var songId = paths[paths.length - 1];
+    
+    axios.get(`/api/comments/song/${songId}/comments`)
     .then((res) => {
       const sortedComments = _.sortBy(res.data, (i) => {
-        return new moment(i.postedAt)
+        return new moment(i.postedat)
       }).reverse();
       this.setState({
         comments: sortedComments
@@ -52,7 +55,9 @@ export default class CommentSection extends React.Component {
   }
 
   getCommentCount = () => {
-    axios.get(`http://localhost:3000${window.location.pathname}commentCount`)
+    var paths = window.location.pathname.split('/');
+    var songId = paths[paths.length - 1];
+    axios.get(`/api/comments/song/${songId}/commentCount`)
     .then((response) => {
       this.setState({
         count: response.data.count
@@ -88,28 +93,32 @@ export default class CommentSection extends React.Component {
     this.setState({displayedComments: []}, () => {
       for (let i = 0; i < this.state.commentCount; i++) {
         this.setState(state => {
-        return state.displayedComments.push(state.comments[i])}
+          if(state.comments[i]){
+            return state.displayedComments.push(state.comments[i])}
+          }
         )
       }
     })
   }
 
   render() {
+    console.log(this.state.displayedComments);
     return (
       <div style={{paddingLeft: '50px'}} className={'containerKevin'} onScroll={this.handleScroll}>
       {this.state.count &&
         <CommentCount className='commentCount' count={this.state.count} />
       }
       {this.state.displayedComments && 
-      this.state.displayedComments.map((i, index) => (
+      this.state.displayedComments.map((i, index) => i && (
         <Comment 
+
         key={index}
-        image={i.profilePic}
+        image={i.profilepic}
         username={i.username}
-        songTime={i.songTime}
+        songTime={i.songtime}
         comment={i.message}
         followers={i.followers}
-        postedAt={i.postedAt}
+        postedAt={i.postedat}
         />
       ))}
         <Loader loading={this.state.loading} />

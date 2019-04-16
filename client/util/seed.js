@@ -1,9 +1,9 @@
+/* eslint-disable linebreak-style */
 const mysql = require('mysql');
 const loremIpsum = require('lorem-ipsum');
 const request = require('request');
 const fs = require('fs');
 const moment = require('moment');
-
 
 // GETS IMAGES FOR PROFILE PIC
 // const download = async (uri, filename, callback) => {
@@ -36,6 +36,7 @@ const createTable = async () => {
   await connection.query('DROP TABLE IF EXISTS comments');
   await connection.query(`CREATE TABLE comments(
     id INT AUTO_INCREMENT PRIMARY KEY,
+    stringId VAECHAR(200),
     songId INT,
     profilePic VARCHAR(200),
     username VARCHAR(200),
@@ -63,9 +64,10 @@ const randomFollowers = () => Math.floor(Math.random() * 10000 + 1);
 const randomNum = () => Math.floor(Math.random() * 99 + 1);
 const createMessage = async (count) => {
   await connection.query(`
-    INSERT INTO comments(profilePic, songId, username, message, postedAt, songTime, followers)
+    INSERT INTO comments(profilePic, songId, stringId username, message, postedAt, songTime, followers)
     VALUES('https://s3-us-west-1.amazonaws.com/kevin-zoundcloud/imgs/user${randomNum()}.jpg',
       '${count}',
+      'string${count}',
       '${loremIpsum({ count: 1, units: 'words' })}',
       '${loremIpsum()}',
       '${getRandomTime()}',
