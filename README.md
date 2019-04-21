@@ -18,7 +18,7 @@
         *[POST /songs/:songId/comments](#post-song-comment)
         *[PUT /songs/:songId/comments](#put-song-comment)
         *[DELETE /songs/:songId/comments](#delete-song-comment)
-6. [Licensing](#licensing_
+6. [Licensing](#licensing)
 7. [Versioning](#versioning)
 8. [Authors](#authors)
 
