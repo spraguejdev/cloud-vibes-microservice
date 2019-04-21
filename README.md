@@ -18,6 +18,9 @@
         *[POST /songs/:songId/comments](#post-song-comment)
         *[PUT /songs/:songId/comments](#put-song-comment)
         *[DELETE /songs/:songId/comments](#delete-song-comment)
+6. [Licensing](#licensing_
+7. [Versioning](#versioning)
+8. [Authors](#authors)
 
 ## Usage
 
@@ -158,7 +161,6 @@ npm install
  
 > Given a commentId, update that comment
 
-
   **URL**
     /song/:songId/comments
     Method:
@@ -186,3 +188,13 @@ npm install
     fetch('/song/:songId/comments', {
         method: 'DELETE'
     })
+    
+## License
+- This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+## Versioning
+- I use Git for versioning.
+
+## Authors
+- **John Sprague** - Software Engineer
+
